@@ -1,7 +1,14 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "Your PC install home";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<p>We are the home for PC installing and providing prefessional consult </p>
+<picture>
+    <source media="(max-width: 680 px)" srcset="@Url.Content("~/Image/h1.png")">
+    <source media="(max-width: 1080 px)" srcset="@Url.Content("~/Image/h2.png")">
+    <source media="(min-width: 1280 px)" srcset="@Url.Content("~/Image/h3.png")">
+    <img src="@Url.Content("~/Image/h1.png")" alt=" ">
+
+</picture>
