@@ -15,7 +15,7 @@ namespace FIT5032_assignment.Models
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
             return userIdentity;
-        }
+        } 
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

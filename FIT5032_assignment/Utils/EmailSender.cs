@@ -13,43 +13,28 @@ namespace FIT5032_Week08A.Utils
     public class EmailSender
     {
         // Please use your API KEY here.
-        private const String API_KEY = "YOUR_API_KEY";
+        private const String API_KEY = "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";
 
         public void Send(String toEmail, String subject, String contents, HttpPostedFileBase postedFileBase)
         {
             var client = new SendGridClient(API_KEY);
-            var from = new EmailAddress("YOUR_SENGDER_EMAIL");
+            var from = new EmailAddress("sdx18217174677@gmail.com");
             var to = new EmailAddress(toEmail, "");
             var plainTextContent = contents;
             var htmlContent = "<p>" + contents + "</p>";
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
 
-            // send y
-            //var emails = new List<EmailAddress>
-            //{
-            //    new EmailAddress("test1@example.com"),
-            //    new EmailAddress("test2@example.com"),
-            //    new EmailAddress("test3@example.com")
-            //};
-            //var msg = MailHelper.CreateSingleEmailToMultipleRecipients(new EmailAddress("test@example.com", "Example User"),
-            //                                                           emails,
-            //                                                           "Test Subject",
-            //                                                           "Plain Text Content",
-            //                                                           "HTML Content"
-            //                                                           );
+           
 
-            //1. toEmail .split(";")
-            //2. controller deal with data
-
-            if (postedFileBase != null && postedFileBase.ContentLength > 0)// view post the file
+            if (postedFileBase != null && postedFileBase.ContentLength > 0)
             {
-                string theFileName = Path.GetFileName(postedFileBase.FileName);// naming file
-                byte[] fileBytes = new byte[postedFileBase.ContentLength];// convert byte
-                using (BinaryReader theReader = new BinaryReader(postedFileBase.InputStream))// break in steam
+                string theFileName = Path.GetFileName(postedFileBase.FileName);
+                byte[] fileBytes = new byte[postedFileBase.ContentLength];
+                using (BinaryReader theReader = new BinaryReader(postedFileBase.InputStream))
                 {
                     fileBytes = theReader.ReadBytes(postedFileBase.ContentLength);
                 }
-                string dataAsString = Convert.ToBase64String(fileBytes);// convert to base64
+                string dataAsString = Convert.ToBase64String(fileBytes);
                 msg.AddAttachment(theFileName, dataAsString);
             }
 
@@ -57,45 +42,6 @@ namespace FIT5032_Week08A.Utils
         }
 
 
-        //public void SendMultiple(List<String> toEmail, String subject, String contents, HttpPostedFileBase postedFileBase)
-        //{
-        //    var client = new SendGridClient(API_KEY);
-        //    var from = new EmailAddress("YOUR_SENGDER_EMAIL");
-        //    var tos = new EmailAddress(toEmail, "");
-        //    var plainTextContent = contents;
-        //    var htmlContent = "<p>" + contents + "</p>";
-        //    var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
-
-        //    // send y
-        //    //var emails = new List<EmailAddress>
-        //    //{
-        //    //    new EmailAddress("test1@example.com"),
-        //    //    new EmailAddress("test2@example.com"),
-        //    //    new EmailAddress("test3@example.com")
-        //    //};
-        //    //var msg = MailHelper.CreateSingleEmailToMultipleRecipients(new EmailAddress("test@example.com", "Example User"),
-        //    //                                                           emails,
-        //    //                                                           "Test Subject",
-        //    //                                                           "Plain Text Content",
-        //    //                                                           "HTML Content"
-        //    //                                                           );
-
-        //    //1. toEmail .split(";")
-        //    //2. controller deal with data
-
-        //    if (postedFileBase != null && postedFileBase.ContentLength > 0)// view post the file
-        //    {
-        //        string theFileName = Path.GetFileName(postedFileBase.FileName);// naming file
-        //        byte[] fileBytes = new byte[postedFileBase.ContentLength];// convert byte
-        //        using (BinaryReader theReader = new BinaryReader(postedFileBase.InputStream))// break in steam
-        //        {
-        //            fileBytes = theReader.ReadBytes(postedFileBase.ContentLength);
-        //        }
-        //        string dataAsString = Convert.ToBase64String(fileBytes);// convert to base64
-        //        msg.AddAttachment(theFileName, dataAsString);
-        //    }
-
-        //    var response = client.SendEmailAsync(msg);
-        //}
+       
     }
 }

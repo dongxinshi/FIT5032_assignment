@@ -29,5 +29,9 @@ namespace FIT5032_assignment.Models
         public virtual DbSet<Product> ProductSet { get; set; }
         public virtual DbSet<Consaltant> ConsaltantSet1 { get; set; }
         public virtual DbSet<Booking> BookingSet { get; set; }
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
     }
 }

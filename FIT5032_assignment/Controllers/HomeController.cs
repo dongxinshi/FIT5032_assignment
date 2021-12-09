@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace FIT5032_assignment.Controllers
 {
+    [RequireHttps]
     public class HomeController : Controller
     {
         public ActionResult Index()

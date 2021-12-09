@@ -15,7 +15,7 @@ namespace FIT5032_assignment.Models
     public partial class Booking
     {
         public int Id { get; set; }
-        public System.TimeSpan time { get; set; }
+        public System.DateTime time { get; set; }
         public string AspNetUsersId { get; set; }
         public int ConsaltantId { get; set; }
     

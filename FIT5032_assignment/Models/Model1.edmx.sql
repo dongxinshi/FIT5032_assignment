@@ -128,7 +128,7 @@ ADD CONSTRAINT [FK_ConsaltantBooking]
     FOREIGN KEY ([ConsaltantId])
     REFERENCES [dbo].[ConsaltantSet1]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_ConsaltantBooking'

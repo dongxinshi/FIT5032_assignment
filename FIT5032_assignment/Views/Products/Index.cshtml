@@ -8,45 +8,70 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @if (ViewContext.HttpContext.User.IsInRole("admin"))
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.factory)
-        </th>
-        <th></th>
-    </tr>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.factory)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.factory)
+                </td>
+                <td>
+                    @if (ViewContext.HttpContext.User.IsInRole("admin"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                        @: |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        @: |
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.factory)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+                    }
+
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
 
 </table>
+
+@section Scripts {
+    <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.js")
+    @Scripts.Render("~/Scripts/DataTables/dataTables.bootstrap.js")
+<script>
+    $(document).ready(function () {
+        $('.table').DataTable();
+    });
+</script>
+    }
